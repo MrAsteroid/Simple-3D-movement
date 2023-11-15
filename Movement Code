@@ -1,0 +1,44 @@
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Transform))]
+public class PlayerMovement : MonoBehaviour
+{
+   Rigidbody rb;
+
+    public float speed;
+    public Transform player;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float zDirect = Input.GetAxis("Horizontal");
+        float xDirect = Input.GetAxis("Vertical");
+        rb.velocity = new Vector3(zDirect * speed, xDirect * speed);
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            rb.velocity = new Vector3(0, 0, zDirect =+ speed);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            rb.velocity = new Vector3(0, 0, zDirect =- speed);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            rb.velocity = new Vector3(xDirect = -speed, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb.velocity = new Vector3(xDirect = +speed, 0, 0);
+        }
+
+    }
+
+}
