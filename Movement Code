@@ -4,10 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(Transform))]
 public class PlayerMovement : MonoBehaviour
 {
-   Rigidbody rb;
+    Rigidbody rb;
 
     public float speed;
     public Transform player;
+
+    private float height = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -22,21 +24,24 @@ public class PlayerMovement : MonoBehaviour
         float xDirect = Input.GetAxis("Vertical");
         rb.velocity = new Vector3(zDirect * speed, xDirect * speed);
 
+        rb.velocity = new Vector3(xDirect = 0, height, zDirect);
+        rb.velocity = new Vector3(zDirect = xDirect, height, zDirect);
+
         if (Input.GetKey(KeyCode.W))
         {
-            rb.velocity = new Vector3(0, 0, zDirect =+ speed);
+            rb.velocity = new Vector3(zDirect = xDirect, height, +speed);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            rb.velocity = new Vector3(0, 0, zDirect =- speed);
+            rb.velocity = new Vector3(zDirect = xDirect, height, -speed);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            rb.velocity = new Vector3(xDirect = -speed, 0, 0);
+            rb.velocity = new Vector3(xDirect = -speed, 0, zDirect);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            rb.velocity = new Vector3(xDirect = +speed, 0, 0);
+            rb.velocity = new Vector3(xDirect = +speed, 0, zDirect);
         }
 
     }
